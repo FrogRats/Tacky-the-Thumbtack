@@ -2,7 +2,7 @@
  * @param {string} cats
  */
 module.exports = {
-  getWebviewContent: function(cats) {
+  getWebviewContent: function(tacky) {
 	return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -11,7 +11,7 @@ module.exports = {
 	  <title>Cat Coding</title>
   </head>
   <body>
-	  <img src="${cats}" width="300" />
+	  <img src="${tacky}" width="300" />
   </body>
   </html>`;
   }
