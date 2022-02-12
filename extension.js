@@ -10,7 +10,7 @@ const  EmotionImages = {
 	"happy": "https://frograts.github.io//HackNotts2021/tackyHappy.gif",
 	"sad": "https://frograts.github.io//HackNotts2021/tackySad.gif",
 	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.gif",
-	"rage": "https://frograts.github.io//HackNotts202/tackyRage.gif"
+	"rage": "https://frograts.github.io//HackNotts2021/tackyRage.gif"
 };
 const Responses = {
 	"greeting": "Hi! I'm looking forward to helping you ;)",
@@ -77,7 +77,7 @@ function activate(context) {
 	  
 			if (answer === "No") {
 				const updateWebview = () => {
-					panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'], Responses['changeThemeNo']);
+					panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
 				};
 				
 				// Set initial content
