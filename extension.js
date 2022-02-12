@@ -7,11 +7,13 @@ const  EmotionImages = {
 	"sad": "https://avatars.githubusercontent.com/u/56484022?v=4",
 	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.png"
   };
-
+  
 const Responses = {
-	"changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
-	"changeThemeNo": "Too bad ;)"
-};
+    "changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
+    "changeThemeNo": "Too bad ;)"};
+
+const TF = require('./Trilio-Functions.js');
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -25,13 +27,14 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "tacky-the-thumbtack" is now active!');
 	const panel = vscode.window.createWebviewPanel(
-		'tackyChat',
-		'Tacky Chat',
+		'catCoding',
+		'Cat Coding',
 		vscode.ViewColumn.Two,
 		{}
 	  );
-
-	// Function -- Init Tacky
+	// The command has been defined in the package.json file
+	// Now provide the implementation of the command with  registerCommand
+	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('tacky-the-thumbtack.awakenTacky', function () {
 		// The code you place here will be executed every time your command is executed
 		const updateWebview = () => {
@@ -45,19 +48,29 @@ function activate(context) {
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
 
 	});
+	// Function -- Start
+	context.subscriptions.push(disposable);
+	context.subscriptions.push(
+		vscode.commands.registerCommand('tacky-the-thumbtack.start', () => {
+		  
+			
+		  const updateWebview = () => {
+			panel.webview.html = TUI.getWebviewContent('https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif', "HelloFrom T ;)");
+		  };
+	
+		  // Set initial content
+		  updateWebview();
+	
+		  // And schedule updates to the content every second
+		  //setInterval(updateWebview, 1000);
+		})
+	  );
 
 	// Function -- Lightmode
 	context.subscriptions.push(
-		vscode.commands.registerCommand("tacky-the-thumbtack.changeTheme", async () => {
-			const updateWebview = () => {
-			panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses['changeTheme']);
-			};
-		
-			 // Set initial content
-			updateWebview();
-
+		vscode.commands.registerCommand("tacky-the-thumbtack.askQuestion", async () => {
 			const answer = await vscode.window.showInformationMessage(
-			  "Will you let me help?",
+			  "Do you accept my help?",
 			  "Yes",
 			  "No"
 			);
@@ -72,6 +85,7 @@ function activate(context) {
 				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
 				
 			} else {
+				vscode.window.showErrorMessage("TEST")
 				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Default Dark+");
 			}
 		  })
@@ -81,19 +95,8 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
 			const userNumber = await vscode.window.showInputBox()
-			const twilioNumber = '+447700169666'
-
-			const accountSid = "ACad2d6631ebbb3405cd80e856341afdf4";
-			const authToken = "29b4094c9384eed24a20e47afdeb596f"; 
-
-			const client = require('twilio')(accountSid, authToken);
-
-			client.messages.create({
-    			body: 'Hello from Tacky!',
-    			to: userNumber, // Text this number
-    			from: twilioNumber, // From a valid Twilio number
-			})
-
+			
+			TF.sendMessage(userNumber);
 		  })
 	);
 }
