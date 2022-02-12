@@ -4,7 +4,6 @@ const vscode = require('vscode');
 const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Trilio-Functions.js');
-const { Console, time } = require('console');
 
 //Global variables
 const  EmotionImages = {
