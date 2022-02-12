@@ -1,7 +1,8 @@
 /**
  * @param {string} cats
  */
-function getWebviewContent(cats) {
+module.exports = {
+  getWebviewContent: function(cats) {
 	return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -14,3 +15,4 @@ function getWebviewContent(cats) {
   </body>
   </html>`;
   }
+}
