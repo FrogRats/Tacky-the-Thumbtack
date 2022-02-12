@@ -14,37 +14,43 @@ function activate(context) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "tacky-the-thumbtack" is now active!');
-
+	const panel = vscode.window.createWebviewPanel(
+		'catCoding',
+		'Cat Coding',
+		vscode.ViewColumn.Two,
+		{}
+	  );
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('tacky-the-thumbtack.helloWorld', function () {
 		// The code you place here will be executed every time your command is executed
-
+		const updateWebview = () => {
+			panel.webview.html = TUI.getWebviewContent('https://avatars.githubusercontent.com/u/56484022?v=4', "Hannah T ;)");
+		  };
+	
+		  // Set initial content
+		  updateWebview();
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
+
 	});
 
 	// Function -- Start
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(
 		vscode.commands.registerCommand('tacky-the-thumbtack.start', () => {
-		  const panel = vscode.window.createWebviewPanel(
-			'catCoding',
-			'Cat Coding',
-			vscode.ViewColumn.One,
-			{}
-		  );
+		  
 			
 		  const updateWebview = () => {
 			panel.webview.html = TUI.getWebviewContent('https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif', "HelloFrom T ;)");
-		  };5
+		  };
 	
 		  // Set initial content
 		  updateWebview();
 	
 		  // And schedule updates to the content every second
-		  setInterval(updateWebview, 1000);
+		  //setInterval(updateWebview, 1000);
 		})
 	  );
 
