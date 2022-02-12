@@ -70,7 +70,7 @@ function activate(context) {
 
 	// Function -- Lightmode
 	context.subscriptions.push(
-		vscode.commands.registerCommand("tacky-the-thumbtack.createTheme", async () => {
+		vscode.commands.registerCommand("tacky-the-thumbtack.changeTheme", async () => {
 			const answer = await vscode.window.showInformationMessage(
 			  "Do you accept my help?",
 			  "Yes",
