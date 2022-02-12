@@ -5,7 +5,7 @@ const TUI = require('./UI-functions.js');
 const  EmotionImages = {
 	"happy": "https://frograts.github.io//HackNotts2021/tackyHappy.png",
 	"sad": "https://avatars.githubusercontent.com/u/56484022?v=4",
-	"angry":""
+	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.png"
   };
 
 const Responses = {
@@ -64,7 +64,7 @@ function activate(context) {
 	  
 			if (answer === "No") {
 				const updateWebview = () => {
-					panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses['changeThemeNo']);
+					panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'], Responses['changeThemeNo']);
 				};
 				
 				// Set initial content

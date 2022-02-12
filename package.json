@@ -22,7 +22,7 @@
 			},
 			{
 				"command": "tacky-the-thumbtack.changeTheme",
-				"title": "changeTheme"
+				"title": "Change Theme"
 			},
 			{
 				"command": "tacky-the-thumbtack.message",
