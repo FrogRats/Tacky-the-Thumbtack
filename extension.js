@@ -55,7 +55,9 @@ function activate(context) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
-		
+		var statusbaritem = vscode.window.createStatusBarItem();
+	  	statusbaritem.text = "$(pinned)Tacky <3"
+	  	statusbaritem.show();
 		// Ask user for phone number
 		vscode.window.showInformationMessage('Please type in your phone number (+44) for helpful, motivational messages!');
 		userNumber = vscode.window.showInputBox()
