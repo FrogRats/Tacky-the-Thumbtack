@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const TUI = require('./UI-functions.js');
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -65,6 +66,26 @@ function activate(context) {
 				vscode.window.showErrorMessage("TEST")
 				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Default Dark+");
 			}
+		  })
+	);
+
+	// Function -- Message
+	context.subscriptions.push(
+		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
+			const userNumber = await vscode.window.showInputBox()
+			const twilioNumber = '+447700169666'
+
+			const accountSid = "ACad2d6631ebbb3405cd80e856341afdf4";
+			const authToken = "29b4094c9384eed24a20e47afdeb596f"; 
+
+			const client = require('twilio')(accountSid, authToken);
+
+			client.messages.create({
+    			body: 'Hello from Tacky!',
+    			to: userNumber, // Text this number
+    			from: twilioNumber, // From a valid Twilio number
+			})
+
 		  })
 	);
 }
