@@ -30,17 +30,17 @@ function activate(context) {
 		vscode.commands.registerCommand("tacky-the-thumbtack.askQuestion", async () => {
 			const answer = await vscode.window.showInformationMessage(
 			  "How was your day?",
-			  "good",
-			  "bad"
+			  "Good!",
+			  "Bad :("
 			);
 	  
-			if (answer === "bad") {
+			if (answer === "Bad :(") {
 			  	vscode.window.showInformationMessage("Sorry to hear that $(alert)");
 				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
 				
 			} else {
 				vscode.window.showErrorMessage("TEST")
-				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Dark");
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Default Dark+");
 			}
 		  })
 	);
