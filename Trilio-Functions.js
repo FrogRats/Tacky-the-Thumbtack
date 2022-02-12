@@ -1,10 +1,9 @@
-const { RelativePattern } = require('vscode');
-
 module.exports = {
 	/**
  	* @param {string} number
+	* @param {string} body
  	*/
-    sendMessage: function(number) {
+    sendMessage: function(number, body) {
 		if (isNumberValid(number)) {
 			const twilioNumber = '+447700169666'
 
@@ -14,7 +13,7 @@ module.exports = {
 			const client = require('twilio')(accountSid, authToken);
 
 			client.messages.create({
-    			body: 'Hello from Tacky!',
+    			body: body, // Message body,
     			to: number, // Text this number
     			from: twilioNumber, // From a valid Twilio number
 				})
