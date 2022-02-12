@@ -10,23 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tacky-the-thumbtack.helloWorld",
-		"onCommand: tacky-the-thumbtack.askQuestion"
+		"onCommand:tacky-the-thumbtack.awakenTacky",
+		"onCommand: tacky-the-thumbtack.changeTheme"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "tacky-the-thumbtack.helloWorld",
-				"title": "Hello World"
+				"command": "tacky-the-thumbtack.awakenTacky",
+				"title": "Awaken Tacky"
 			},
 			{
-				"command": "tacky-the-thumbtack.start",
-				"title": "Start"
-			},
-			{
-				"command": "tacky-the-thumbtack.askQuestion",
-				"title": "Ask Question"
+				"command": "tacky-the-thumbtack.changeTheme",
+				"title": "changeTheme"
 			},
 			{
 				"command": "tacky-the-thumbtack.message",
