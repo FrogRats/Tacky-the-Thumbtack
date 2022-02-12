@@ -9,24 +9,26 @@ const TF = require('./Trilio-Functions.js');
 const  EmotionImages = {
 	"happy": "https://frograts.github.io//HackNotts2021/tackyHappy.gif",
 	"sad": "https://frograts.github.io//HackNotts2021/tackySad.gif",
-	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.gif"
-  };
+	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.gif",
+	"rage": "https://frograts.github.io//HackNotts202/tackyRage.gif"
+};
 const Responses = {
+	"greeting": "Hi! I'm looking forward to helping you ;)",
     "changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
     "changeThemeNo": "Too bad ;)",
-	"FileCreation": "Adding to your project? dont forget to your Readme <3",
-	"FileDeleation": "Where did the files go ?"};
+	"changeThemeYes": "Whoops",
+	"FileCreation": "Adding to your project? dont forget to update your Readme <3",
+	"FileDeleation": "Where did the files go?"
+};
 
 let lastChange;
 const userNumber = "+447399559326";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-
 /**
  * @param {vscode.ExtensionContext} context
  */
-
+// this method is called when your extension is activated
+// your extension is activated the very first time the command is executed
 function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
@@ -44,7 +46,7 @@ function activate(context) {
 	let disposable = vscode.commands.registerCommand('tacky-the-thumbtack.awakenTacky', function () {
 		// The code you place here will be executed every time your command is executed
 		const updateWebview = () => {
-			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], "Hi! I'm looking forward to helping you ;)");
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["greeting"]);
 		  };
 	
 		 // Set initial content
@@ -74,11 +76,16 @@ function activate(context) {
 				
 				// Set initial content
 				updateWebview();
-				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Red");
 				
 			} else {
-				vscode.window.showErrorMessage("TEST")
-				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Default Dark+");
+				const updateWebview = () => {
+					panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
+				};
+				
+				// Set initial content
+				updateWebview();
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
 			}
 		  })
 	);
