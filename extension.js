@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Twilio-Functions.js');
+const { systemDefaultArchitecture } = require('@vscode/test-electron/out/util');
 
 //Global variables
 const  EmotionImages = {
@@ -130,6 +131,12 @@ function activate(context) {
 
 	//Function -- Get current time each time user changes focus
 	vscode.window.onDidChangeWindowState(async () => {
+		lastChange = moment().format('HH:mm:ss');
+	})
+
+	//Get current time when user changes text document
+	vscode.workspace.onDidChangeTextDocument(async () => {
+		console.log("trigger");
 		lastChange = moment().format('HH:mm:ss');
 	})
 
