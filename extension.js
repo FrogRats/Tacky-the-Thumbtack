@@ -83,7 +83,7 @@ function activate(context) {
 		  })
 	);
 
-	// Function -- Message
+	// Function -- Send SMS to User
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
 			const userNumber = await vscode.window.showInputBox()
@@ -103,6 +103,7 @@ function activate(context) {
 			lastChange = moment().format('HH:mm:ss');
 
 			//TF.sendMessage(userNumber);
+			vscode.window.showInformationMessage('DO YOUR WORK!');
 		}
     };
 
