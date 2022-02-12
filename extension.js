@@ -1,7 +1,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const moment = require('moment');
 const TUI = require('./UI-functions.js');
+const TF = require('./Trilio-Functions.js');
+const { Console, time } = require('console');
+
+//Global variables
 const  EmotionImages = {
 	"happy": "https://frograts.github.io//HackNotts2021/tackyHappy.png",
 	"sad": "https://avatars.githubusercontent.com/u/56484022?v=4",
@@ -12,8 +17,8 @@ const Responses = {
     "changeThemeNo": "Too bad ;)",
 	"FileCreation": "Adding to your project? dont forget to your Readme <3"};
 
-const TF = require('./Trilio-Functions.js');
-const { Console } = require('console');
+let lastChange;
+const userNumber = "+447399559326";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -48,7 +53,9 @@ function activate(context) {
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
 
+		setInterval(checkInactivity, 10000);
 	});
+
 	// Function -- Start
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(
@@ -99,8 +106,27 @@ function activate(context) {
 			TF.sendMessage(userNumber);
 		  })
 	);
+	
+	//Function -- Check Timer
+	function checkInactivity() {
+        const currentTime = moment().format("HH:mm:ss");
+		const timeThreshold = moment("00:00:30", "HH:mm:ss");
+
+		const difference = moment.utc(moment(currentTime, "HH:mm:ss").diff(moment(lastChange, "HH:mm:ss"))).format("HH:mm:ss");
+		console.log(difference);
+
+		if (moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
+			lastChange = moment().format('HH:mm:ss');
+
+			//TF.sendMessage(userNumber);
+		}
+    };
 
 	//Function -- Timer
+	vscode.window.onDidChangeWindowState(async () => {
+		lastChange = moment().format('HH:mm:ss');
+	})
+
 	panel.onDidChangeViewState(async () => {
 		console.log("test")
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
@@ -111,8 +137,6 @@ function activate(context) {
 		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["FileCreation"]);
 		}
 	})
-	
-	
 }
 
 // this method is called when your extension is deactivated
