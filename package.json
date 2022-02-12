@@ -18,6 +18,10 @@
 			{
 				"command": "tacky-the-thumbtack.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command":"tacky-the-thumbtack.askQuestion",
+				"title":"Ask Question"
 			}
 		]
 	},

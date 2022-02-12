@@ -25,6 +25,25 @@ function activate(context) {
 	});
 
 	context.subscriptions.push(disposable);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand("tacky-the-thumbtack.askQuestion", async () => {
+			const answer = await vscode.window.showInformationMessage(
+			  "How was your day?",
+			  "good",
+			  "bad"
+			);
+	  
+			if (answer === "bad") {
+			  	vscode.window.showInformationMessage("Sorry to hear that $(alert)");
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
+				
+			} else {
+				vscode.window.showErrorMessage("TEST")
+				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Dark");
+			}
+		  })
+	);
 }
 
 // this method is called when your extension is deactivated
