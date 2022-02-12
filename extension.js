@@ -22,7 +22,7 @@ const Responses = {
 };
 
 let lastChange;
-const userNumber = "+447399559326";
+let userNumber;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -37,9 +37,9 @@ function activate(context) {
 	const panel = vscode.window.createWebviewPanel(
 		'tacky',
 		'Tacky',
-		vscode.ViewColumn.Two,
-		{}
-	  );
+		vscode.ViewColumn.Two,{}
+	);
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
@@ -54,7 +54,12 @@ function activate(context) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
-
+		
+		// Ask user for phone number
+		vscode.window.showInformationMessage('Please type in your phone number (+44) for helpful, motivational messages!');
+		userNumber = vscode.window.showInputBox()
+		
+		//Call checkActivity every few seconds
 		setInterval(checkInactivity, 10000);
 	});
 
@@ -89,14 +94,6 @@ function activate(context) {
 			}
 		  })
 	);
-
-	// Function -- Send SMS to User
-	context.subscriptions.push(
-		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
-			const userNumber = await vscode.window.showInputBox()
-			TF.sendMessage(userNumber);
-		  })
-	);
 	
 	//Function -- Check Timer
 	function checkInactivity() {
@@ -108,12 +105,12 @@ function activate(context) {
 		if (moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
 
-			//TF.sendMessage(userNumber);
+			//TF.sendMessage(userNumber, "DO YOUR WORK! - Tacky");
 			vscode.window.showInformationMessage('DO YOUR WORK!');
 		}
     };
 
-	//Function -- Timer
+	//Function -- Get current time each time user changes focus
 	vscode.window.onDidChangeWindowState(async () => {
 		lastChange = moment().format('HH:mm:ss');
 	})
