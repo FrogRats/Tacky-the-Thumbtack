@@ -7,7 +7,6 @@ const  EmotionImages = {
 	"sad": "https://avatars.githubusercontent.com/u/56484022?v=4",
 	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.png"
   };
-  
 const Responses = {
     "changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
     "changeThemeNo": "Too bad ;)",
@@ -107,9 +106,10 @@ function activate(context) {
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 	})
 	vscode.workspace.onDidCreateFiles(async () => {
+		if(Math.floor(Math.random() * 11)  >= 3){
 		console.log("???")
 		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["FileCreation"]);
-
+		}
 	})
 	
 	
