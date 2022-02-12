@@ -1,8 +1,9 @@
 /**
  * @param {string} cats
+ * @param {string} textbox
  */
 module.exports = {
-  getWebviewContent: function(cats) {
+  getWebviewContent: function(cats, textbox) {
 	return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -11,8 +12,11 @@ module.exports = {
 	  <title>Cat Coding</title>
   </head>
   <body>
+    <div>
+    <a>${textbox}</a>
+    </div>
 	  <img src="${cats}" width="300" />
   </body>
-  </html>`;
+  </html>`; 
   }
 }

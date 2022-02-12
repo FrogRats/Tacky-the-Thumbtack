@@ -36,8 +36,8 @@ function activate(context) {
 		  );
 			
 		  const updateWebview = () => {
-			panel.webview.html = TUI.getWebviewContent('https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif');
-		  };
+			panel.webview.html = TUI.getWebviewContent('https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif', "HelloFrom T ;)");
+		  };5
 	
 		  // Set initial content
 		  updateWebview();
