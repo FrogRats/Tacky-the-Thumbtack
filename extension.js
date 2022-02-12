@@ -104,6 +104,7 @@ function activate(context) {
 		  })
 	);
 
+	//Function -- Unhelpful Debugging
 	context.subscriptions.push(
 		vscode.debug.onDidStartDebugSession(async () => {
 			vscode.window.showInformationMessage('Debugging are you? Let me help!');
