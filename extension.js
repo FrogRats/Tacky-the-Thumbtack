@@ -17,8 +17,9 @@ const Responses = {
     "changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
     "changeThemeNo": "Too bad ;)",
 	"changeThemeYes": "Whoops",
-	"FileCreation": "Adding to your project? dont forget to update your Readme <3",
-	"FileDeleation": "Where did the files go?"
+	"fileCreation": "Adding to your project? dont forget to update your Readme <3",
+	"fileDeletion": "Where did the files go?",
+	"motivation": "Do your work!"
 };
 
 let lastChange;
@@ -106,7 +107,7 @@ function activate(context) {
 			lastChange = moment().format('HH:mm:ss');
 
 			//TF.sendMessage(userNumber, "DO YOUR WORK! - Tacky");
-			vscode.window.showInformationMessage('DO YOUR WORK!');
+			vscode.window.showInformationMessage(Responses["motivation"]);
 		}
     };
 
@@ -124,7 +125,7 @@ function activate(context) {
 	vscode.workspace.onDidCreateFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Create event")
-		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["FileCreation"]);
+		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["fileCreation"]);
 		}
 	})
 
@@ -132,7 +133,7 @@ function activate(context) {
 	vscode.workspace.onDidDeleteFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Del event")
-		panel.webview.html = TUI.getWebviewContent(EmotionImages["mad"],Responses["FileDeleation"]);
+		panel.webview.html = TUI.getWebviewContent(EmotionImages["mad"],Responses["fileDeletion"]);
 		}
 	})
 	
