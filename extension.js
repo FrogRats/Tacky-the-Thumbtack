@@ -69,37 +69,14 @@ function activate(context) {
 
 	context.subscriptions.push(disposable);
 
-	// Function -- Lightmode
+	// Command -- Lightmode
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.changeTheme", async () => {
-			const answer = await vscode.window.showInformationMessage(
-			  "Do you accept my help?",
-			  "Yes",
-			  "No"
-			);
-	  
-			if (answer === "No") {
-				const updateWebview = () => {
-					panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
-				};
-				
-				// Set initial content
-				updateWebview();
-				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Red");
-				
-			} else {
-				const updateWebview = () => {
-					panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
-				};
-				
-				// Set initial content
-				updateWebview();
-				vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
-			}
+			setTheme();
 		  })
 	);
 
-	// Function -- Send SMS to User
+	// Command -- Send SMS to User
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
 			const userNumber = await vscode.window.showInputBox()
@@ -107,7 +84,7 @@ function activate(context) {
 		  })
 	);
 
-	//Function -- Unhelpful Debugging
+	// Command -- Unhelpful Debugging
 	context.subscriptions.push(
 		vscode.debug.onDidStartDebugSession(async () => {
 			vscode.window.showInformationMessage('Debugging are you? Let me help!');
@@ -115,7 +92,7 @@ function activate(context) {
 			})
 	);
 
-		// Function -- Help me
+	// Command -- Help me
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			//vscode.DocumentHighlight.
@@ -123,7 +100,7 @@ function activate(context) {
 	);
 
 	
-	//Function -- Check Timer
+	// Function -- Check Timer
 	function checkInactivity() {
         const currentTime = moment().format("HH:mm:ss");
 		const timeThreshold = moment("00:00:30", "HH:mm:ss");
@@ -136,25 +113,55 @@ function activate(context) {
 			//TF.sendMessage(userNumber, "DO YOUR WORK! - Tacky");
 			vscode.window.showInformationMessage(Responses["motivation"]);
 		}
+
+		else {
+			if(Math.floor(Math.random() * 10)  == 1){}
+		}
     };
 
-	//Function -- Get current time each time user changes focus
+	// Function -- Light Mode
+	async function setTheme(){
+		const answer = await vscode.window.showInformationMessage(
+			"Would you like some help?",
+			"Yes",
+			"No"
+		  );
+	
+		  if (answer === "No") {
+			  const updateWebview = () => {
+				  panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
+			  };
+			  
+			  updateWebview();
+			  vscode.workspace.getConfiguration().update("workbench.colorTheme", "Red");
+			  
+		  } else {
+			  const updateWebview = () => {
+				  panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
+			  };
+			  
+			  updateWebview();
+			  vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
+		  }
+	}
+
+	// OnEvent -- Get current time each time user changes focus
 	vscode.window.onDidChangeWindowState(async () => {
 		lastChange = moment().format('HH:mm:ss');
 	})
 
-	//Get current time when user changes text document
+	// OnEvent -- Get current time when user changes text document
 	vscode.workspace.onDidChangeTextDocument(async () => {
 		console.log("trigger");
 		lastChange = moment().format('HH:mm:ss');
 	})
 
-	//Function -- Change Tacky focus
+	// OnEvent -- Change Tacky focus
 	panel.onDidChangeViewState(async () => {
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 	})
 
-	//Function -- Add files
+	// OnEvent -- Add files
 	vscode.workspace.onDidCreateFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Create event")
@@ -162,7 +169,7 @@ function activate(context) {
 		}
 	})
 
-	//Function -- Remove files
+	// OnEvent -- Remove files
 	vscode.workspace.onDidDeleteFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Del event")
