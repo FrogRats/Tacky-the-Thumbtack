@@ -11,7 +11,7 @@ const  EmotionImages = {
 	"happy": "https://frograts.github.io//HackNotts2021/tackyHappy.gif",
 	"sad": "https://frograts.github.io//HackNotts2021/tackySad.gif",
 	"mad": "https://frograts.github.io//HackNotts2021/tackyMad.gif",
-	"rage": "https://frograts.github.io//HackNotts202/tackyRage.gif"
+	"rage": "https://frograts.github.io//HackNotts2021/tackyRage.gif"
 };
 const Responses = {
 	"greeting": "Hi! I'm looking forward to helping you ;)",
@@ -56,7 +56,9 @@ function activate(context) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
-		
+		var statusbaritem = vscode.window.createStatusBarItem();
+	  	statusbaritem.text = "$(pinned)Tacky <3"
+	  	statusbaritem.show();
 		// Ask user for phone number
 		vscode.window.showInformationMessage('Please type in your phone number (+44) for helpful, motivational messages!');
 		userNumber = vscode.window.showInputBox()
@@ -78,7 +80,7 @@ function activate(context) {
 	  
 			if (answer === "No") {
 				const updateWebview = () => {
-					panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'], Responses['changeThemeNo']);
+					panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
 				};
 				
 				// Set initial content
