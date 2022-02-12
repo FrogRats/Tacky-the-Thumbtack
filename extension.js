@@ -115,7 +115,9 @@ function activate(context) {
 		}
 
 		else {
-			if(Math.floor(Math.random() * 10)  == 1){}
+			if(Math.floor(Math.random() * 10)  == 1){
+				setTheme();
+			}
 		}
     };
 
