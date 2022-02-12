@@ -115,6 +115,13 @@ function activate(context) {
 			})
 	);
 
+		// Function -- Help me
+	context.subscriptions.push(
+		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
+			//vscode.DocumentHighlight.
+		  })
+	);
+
 	
 	//Function -- Check Timer
 	function checkInactivity() {

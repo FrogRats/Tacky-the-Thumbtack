@@ -27,6 +27,10 @@
 			{
 				"command": "tacky-the-thumbtack.message",
 				"title": "Message"
+			},
+			{
+				"command": "tacky-the-thumbtack.helpme",
+				"title": "Help Me"
 			}
 		]
 	},
