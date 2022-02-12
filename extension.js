@@ -10,7 +10,8 @@ const  EmotionImages = {
   
 const Responses = {
     "changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
-    "changeThemeNo": "Too bad ;)"};
+    "changeThemeNo": "Too bad ;)",
+	"FileCreation": "Adding to your project? dont forget to your Readme <3"};
 
 const TF = require('./Trilio-Functions.js');
 const { Console } = require('console');
@@ -28,8 +29,8 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "tacky-the-thumbtack" is now active!');
 	const panel = vscode.window.createWebviewPanel(
-		'catCoding',
-		'Cat Coding',
+		'tacky',
+		'Tacky',
 		vscode.ViewColumn.Two,
 		{}
 	  );
@@ -103,6 +104,11 @@ function activate(context) {
 	//Function -- Timer
 	panel.onDidChangeViewState(async () => {
 		console.log("test")
+	})
+	vscode.workspace.onDidCreateFiles(async () => {
+		console.log("???")
+		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["FileCreation"]);
+
 	})
 	
 	
