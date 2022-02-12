@@ -1,9 +1,9 @@
 /**
- * @param {string} cats
- * @param {string} textbox
+ * @param {string} tackyImage
+ * @param {string} tackyText
  */
 module.exports = {
-  getWebviewContent: function(cats, textbox) {
+  getWebviewContent: function(tackyImage, tackyText) {
 	return `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -13,9 +13,9 @@ module.exports = {
   </head>
   <body>
     <div>
-    <a>${textbox}</a>
+    <a>${tackyText}</a>
     </div>
-	  <img src="${cats}" width="300" />
+	  <img src="${tackyImage}" width="300" />
   </body>
   </html>`; 
   }
