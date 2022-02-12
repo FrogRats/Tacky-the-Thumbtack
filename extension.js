@@ -104,6 +104,7 @@ function activate(context) {
 	//Function -- Timer
 	panel.onDidChangeViewState(async () => {
 		console.log("test")
+		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 	})
 	vscode.workspace.onDidCreateFiles(async () => {
 		console.log("???")
