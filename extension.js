@@ -25,6 +25,7 @@ function activate(context) {
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
 	});
 
+	// Function -- Start
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(
 		vscode.commands.registerCommand('tacky-the-thumbtack.start', () => {
@@ -46,6 +47,8 @@ function activate(context) {
 		  setInterval(updateWebview, 1000);
 		})
 	  );
+
+	// Function -- Lightmode
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.askQuestion", async () => {
 			const answer = await vscode.window.showInformationMessage(
