@@ -13,6 +13,7 @@ const Responses = {
     "changeThemeNo": "Too bad ;)"};
 
 const TF = require('./Trilio-Functions.js');
+const { Console } = require('console');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -95,10 +96,16 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
 			const userNumber = await vscode.window.showInputBox()
-			
 			TF.sendMessage(userNumber);
 		  })
 	);
+
+	//Function -- Timer
+	panel.onDidChangeViewState(async () => {
+		console.log("test")
+	})
+	
+	
 }
 
 // this method is called when your extension is deactivated
