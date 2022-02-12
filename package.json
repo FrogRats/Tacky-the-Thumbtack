@@ -21,6 +21,10 @@
 				"title": "Hello World"
 			},
 			{
+				"command": "tacky-the-thumbtack.start",
+				"title": "Start"
+			},
+			{
 				"command":"tacky-the-thumbtack.askQuestion",
 				"title":"Ask Question"
 			}

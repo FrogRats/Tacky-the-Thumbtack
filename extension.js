@@ -8,6 +8,7 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
+
 function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
@@ -25,7 +26,26 @@ function activate(context) {
 	});
 
 	context.subscriptions.push(disposable);
-
+	context.subscriptions.push(
+		vscode.commands.registerCommand('tacky-the-thumbtack.start', () => {
+		  const panel = vscode.window.createWebviewPanel(
+			'catCoding',
+			'Cat Coding',
+			vscode.ViewColumn.One,
+			{}
+		  );
+	
+		  const updateWebview = () => {
+			panel.webview.html = getWebviewContent('https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif');
+		  };
+	
+		  // Set initial content
+		  updateWebview();
+	
+		  // And schedule updates to the content every second
+		  setInterval(updateWebview, 1000);
+		})
+	  );
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.askQuestion", async () => {
 			const answer = await vscode.window.showInformationMessage(
@@ -53,3 +73,19 @@ module.exports = {
 	activate,
 	deactivate
 }
+/**
+ * @param {string} cats
+ */
+function getWebviewContent(cats) {
+	return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>Cat Coding</title>
+  </head>
+  <body>
+	  <img src="${cats}" width="300" />
+  </body>
+  </html>`;
+  }
