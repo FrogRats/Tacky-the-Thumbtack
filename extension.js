@@ -3,7 +3,7 @@
 const vscode = require('vscode');
 const moment = require('moment');
 const TUI = require('./UI-functions.js');
-const TF = require('./Trilio-Functions.js');
+const TF = require('./Twilio-Functions.js');
 
 //Global variables
 const  EmotionImages = {
