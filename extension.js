@@ -96,6 +96,24 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			//vscode.DocumentHighlight.
+			const editor = vscode.window.activeTextEditor;
+			//let cursorPosition = editor.selection.start;
+			const codeText = editor.document.getText();
+
+			if (codeText.includes('DIVISION')){
+				vscode.DocumentHighlight.apply(editor.document);
+				editor.document
+				//vscode.DocumentHighlight()
+				//vscode.DocumentHighlight
+				console.log("It worked");
+			}
+			
+
+			
+
+			//let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+			//let highlight = editor.document.getText(wordRange);
+			//console.log(highlight);
 		  })
 	);
 
