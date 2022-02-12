@@ -94,6 +94,22 @@ function activate(context) {
 			}
 		  })
 	);
+
+	// Function -- Send SMS to User
+	context.subscriptions.push(
+		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
+			const userNumber = await vscode.window.showInputBox()
+			//TF.sendMessage(userNumber);
+		  })
+	);
+
+	context.subscriptions.push(
+		vscode.debug.onDidStartDebugSession(async () => {
+			vscode.window.showInformationMessage('Debugging are you? Let me help!');
+			vscode.debug.removeBreakpoints(vscode.debug.breakpoints)
+			})
+	);
+
 	
 	//Function -- Check Timer
 	function checkInactivity() {
