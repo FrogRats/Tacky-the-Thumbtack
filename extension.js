@@ -96,13 +96,21 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			//vscode.DocumentHighlight.
+			const editorEdit = new vscode.WorkspaceEdit;
 			const editor = vscode.window.activeTextEditor;
-			//let cursorPosition = editor.selection.start;
+			let cursorPosition = editor.selection.start;
+			let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+			let highlight = editor.document.getText(wordRange);
+		
 			const codeText = editor.document.getText();
+			
 
-			if (codeText.includes('DIVISION')){
+			editorEdit.replace(editor.document.uri,wordRange,"SHIET");
+			vscode.workspace.applyEdit;
+
+			if (codeText.includes(' ')){
 				vscode.DocumentHighlight.apply(editor.document);
-				editor.document
+				vscode.DocumentHighlight.apply(highlight);
 				//vscode.DocumentHighlight()
 				//vscode.DocumentHighlight
 				console.log("It worked");
