@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tacky-the-thumbtack.helloWorld"
+		"onCommand:tacky-the-thumbtack.helloWorld",
+		"conCommand: tacky-the-thumbtack.askQuestion"
 	],
 	"main": "./extension.js",
 	"contributes": {
