@@ -56,23 +56,7 @@ function activate(context) {
 		setInterval(checkInactivity, 10000);
 	});
 
-	// Function -- Start
 	context.subscriptions.push(disposable);
-	context.subscriptions.push(
-		vscode.commands.registerCommand('tacky-the-thumbtack.start', () => {
-		  
-			
-		  const updateWebview = () => {
-			panel.webview.html = TUI.getWebviewContent('https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif', "HelloFrom T ;)");
-		  };
-	
-		  // Set initial content
-		  updateWebview();
-	
-		  // And schedule updates to the content every second
-		  //setInterval(updateWebview, 1000);
-		})
-	  );
 
 	// Function -- Lightmode
 	context.subscriptions.push(
