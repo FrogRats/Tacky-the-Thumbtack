@@ -97,7 +97,6 @@ function activate(context) {
 		const timeThreshold = moment("00:00:30", "HH:mm:ss");
 
 		const difference = moment.utc(moment(currentTime, "HH:mm:ss").diff(moment(lastChange, "HH:mm:ss"))).format("HH:mm:ss");
-		console.log(difference);
 
 		if (moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
@@ -112,16 +111,20 @@ function activate(context) {
 		lastChange = moment().format('HH:mm:ss');
 	})
 
+	//Function -- Change Tacky focus
 	panel.onDidChangeViewState(async () => {
-		console.log("test")
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 	})
+
+	//Function -- Add files
 	vscode.workspace.onDidCreateFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Create event")
 		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["FileCreation"]);
 		}
 	})
+
+	//Function -- Remove files
 	vscode.workspace.onDidDeleteFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Del event")
