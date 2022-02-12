@@ -103,12 +103,12 @@ function activate(context) {
 			let highlight = editor.document.getText(wordRange);
 		
 			const codeText = editor.document.getText();
-			
-
+ 
 			editorEdit.replace(editor.document.uri,wordRange,"SHIET");
 			vscode.workspace.applyEdit;
 
-			if (codeText.includes(' ')){
+			if (codeText.includes('COMPILED')){
+			
 				vscode.DocumentHighlight.apply(editor.document);
 				vscode.DocumentHighlight.apply(highlight);
 				//vscode.DocumentHighlight()
