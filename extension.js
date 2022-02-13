@@ -24,7 +24,10 @@ const Responses = {
 	"fileDeletion": "Where did the files go?",
 	"motivation": "Do your work!",
 	"highlight": "I have selected where I've identified the problem!",
-	"highlightFail": "Oh no!"
+	"highlightFail": "Oh no!",
+	"numberMessage": "Please type in your phone number (+44) for helpful, motivational messages!",
+	"numberSuccess": "Thanks for the number!",
+	"numberFailure": "Aww that didn't work! Check your number and try again!"
 };
 
 let themeVal = 16;
@@ -156,10 +159,15 @@ function activate(context) {
 	//Command -- Get user phone number
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.addnumber", async () => {
-			vscode.window.showInformationMessage('Please type in your phone number (+44) for helpful, motivational messages!');
-			TF.setNumber(await vscode.window.showInputBox());
+			if (TF.setNumber(await vscode.window.showInputBox())) {
+				panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["numberSuccess"]);
+				numberSet = true;
+			}
+			else {
+				panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["numberFailure"]);
+			}
 
-			numberSet = true;
+			
 		})
 	);
 

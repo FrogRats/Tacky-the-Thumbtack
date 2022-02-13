@@ -14,6 +14,8 @@ module.exports = {
 		if (isNumberValid(number)) {
 			userNumber = number;
 		}
+
+		return(isNumberValid(number));
 	},
 
 	/**
