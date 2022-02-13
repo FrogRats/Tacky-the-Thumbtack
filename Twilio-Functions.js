@@ -2,9 +2,6 @@ let userNumber;
 
 const vscode = require('vscode');
 
-
-
-
 module.exports = {
 	/**
 	* @param {string} number
