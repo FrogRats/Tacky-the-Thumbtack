@@ -4,39 +4,25 @@ Tacky the Thumbtack is the world's worst VS Code Extension buddy to ever grace y
 <p align = "center"><img src = "https://github.com/FrogRats/Tacky-the-Thumbtack/blob/main/Assets/tackyHappy.gif" width = "500" height = "500"></p>  
 
 
-## Features
+## Primary Commands:
+**Awaken Tacky** - Wakes up th eldritch beast.  
+**Help Me** - Tacky will identify and hghlight problems with your code.  
+**Add Number** - Lets you take he functionality of this extension to the next level aka Your Phone.  
+**Change Theme** - Struggling with your current IDE theme? Fear not, Tacky has suggestions.  
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Bonus Features:
+**Chaos Mode** - Appease your eldritch beast or suffer the consequences.  
 
-For example if there is an image subfolder under your extension project workspace:
+![image](https://user-images.githubusercontent.com/56484022/153745847-bfc877bc-af7f-4ce3-9340-335b3c85c3e3.png)
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+> Random Events: As a supportive assistant, Tacky will take the initiative to provide support when needed.  
+> Debugger Assistant: Sometimes we all need a little help so why not let Tacky assist you!  
+> Motivation Tool: Tacky is designed to promote creation. (i.e. Files, code and retaining high productivity)  
 
 ## Requirements
+We recommend that you use `Add Number` when you install Tacky so he can provide you with the full experience. Additionally, you will need to poulate the config file with the necessary twilio data.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0 - 13th February 2022
+## 1.0.0 - 13th February 2022
 
 Initial release of Tacky!
