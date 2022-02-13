@@ -1,29 +1,42 @@
+const twilioNumber = '+447700169666'
+let userNumber;
+
+const accountSid = "ACad2d6631ebbb3405cd80e856341afdf4";
+const authToken = "29b4094c9384eed24a20e47afdeb596f"; 
+
+const client = require('twilio')(accountSid, authToken);
+
+
+
 module.exports = {
 	/**
- 	* @param {string} number
+	* @param {string} number
+ 	*/
+	setNumber: function(number) {
+		if (isNumberValid(number)) {
+			userNumber = number;
+		}
+	},
+
+	/**
 	* @param {string} body
  	*/
-    sendMessage: function(number, body) {
-		if (isNumberValid(number)) {
-			const twilioNumber = '+447700169666'
-
-			const accountSid = "ACad2d6631ebbb3405cd80e856341afdf4";
-			const authToken = "29b4094c9384eed24a20e47afdeb596f"; 
-
-			const client = require('twilio')(accountSid, authToken);
-
-			client.messages.create({
-    			body: body, // Message body,
-    			to: number, // Text this number
-    			from: twilioNumber, // From a valid Twilio number
-				})
-		}
-		else {
-			console.log("Invalid Number!")
-		}
-        
-    }
-  }
+    sendMessage: function(body) {
+		client.messages.create({
+			body: body, // Message body,
+			to: userNumber, // Text this number
+			from: twilioNumber // From a valid Twilio number
+		});
+    },
+	
+	makeCall: function() {
+		client.calls.create({
+			url: 'https://frogratsfunction.azurewebsites.net/api/MakeVoiceCall?',
+			to: userNumber,
+			from: twilioNumber
+		});
+	}
+}
 
 /**
  * @param {string} number

@@ -25,7 +25,7 @@ const Responses = {
 };
 
 let lastChange;
-let userNumber;
+let numberSet = false;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -60,10 +60,7 @@ function activate(context) {
 		var statusbaritem = vscode.window.createStatusBarItem();
 	  	statusbaritem.text = "$(pinned)Tacky <3"
 	  	statusbaritem.show();
-		// Ask user for phone number
-		vscode.window.showInformationMessage('Please type in your phone number (+44) for helpful, motivational messages!');
-		userNumber = vscode.window.showInputBox()
-		
+
 		//Call checkActivity every few seconds
 		setInterval(checkInactivity, 10000);
 	});
@@ -80,8 +77,10 @@ function activate(context) {
 	// Command -- Send SMS to User
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
-			const userNumber = await vscode.window.showInputBox()
-			//TF.sendMessage(userNumber);
+			if (numberSet) {
+				//TF.sendMessage("uwu");
+				TF.makeCall();
+			}
 		  })
 	);
 
@@ -107,8 +106,17 @@ function activate(context) {
 			//console.log(highlight);
 		  })
 	);
-
 	
+	//Command -- Get user phone number
+	context.subscriptions.push(
+		vscode.commands.registerCommand("tacky-the-thumbtack.addnumber", async () => {
+			vscode.window.showInformationMessage('Please type in your phone number (+44) for helpful, motivational messages!');
+			TF.setNumber(await vscode.window.showInputBox());
+
+			numberSet = true;
+		})
+	);
+
 	// Function -- Check Timer
 	function checkInactivity() {
         const currentTime = moment().format("HH:mm:ss");
@@ -116,10 +124,12 @@ function activate(context) {
 
 		const difference = moment.utc(moment(currentTime, "HH:mm:ss").diff(moment(lastChange, "HH:mm:ss"))).format("HH:mm:ss");
 
-		if (moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
+		if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
 
-			//TF.sendMessage(userNumber, "DO YOUR WORK! - Tacky");
+			//TF.makeCall();
+			//TF.sendMessage("DO YOUR WORK! - Tacky");
+
 			vscode.window.showInformationMessage(Responses["motivation"]);
 		}
 
@@ -173,7 +183,6 @@ function activate(context) {
 
 	// OnEvent -- Get current time when user changes text document
 	vscode.workspace.onDidChangeTextDocument(async () => {
-		console.log("trigger");
 		lastChange = moment().format('HH:mm:ss');
 	})
 
@@ -200,8 +209,6 @@ function activate(context) {
 		panel.webview.html = TUI.getWebviewContent(EmotionImages["mad"],Responses["fileDeletion"]);
 		}
 	})
-	
-	
 }
 
 // this method is called when your extension is deactivated
