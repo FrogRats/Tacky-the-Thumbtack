@@ -96,6 +96,8 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			//vscode.DocumentHighlight.
+
+			vscode.workspace.getConfiguration().update("workbench.colorCustomizations":"activityBar.background", "Red");
 			const editor = vscode.window.activeTextEditor;
 			
 			var firstLine = editor.document.lineAt(0)
@@ -104,13 +106,13 @@ function activate(context) {
 			
 			let highlight = new vscode.DocumentHighlight(textRange)
 			const editorWindow = new vscode.WorkspaceEdit
-			
+			//editorWindow.set(editor.document.uri, highlight);
 			vscode.workspace.applyEdit;
-
+			
 			console.log(textRange)
 			console.log(highlight);
 			
-			
+			vscode.workspace.getConfiguration().update("editor.rangeHighlightBorder", "Red");
 			
 			//vscode.workspace.applyEdit
 			//let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
@@ -199,8 +201,7 @@ function activate(context) {
 	})
 
 	// OnEvent -- Change Tacky focus
-
-	 panel.onDidChangeViewState(async (e) => {
+	panel.onDidChangeViewState(async (e) => {
 		if(e.webviewPanel.visible == false){
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 		}
