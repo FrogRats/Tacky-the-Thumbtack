@@ -183,7 +183,6 @@ function activate(context) {
 		if (numberSet && !callSent && moment(difference, "HH:mm:ss").isAfter(moment(callTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
 			TF.makeCall();
-
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['motivation']);
 			callSent = true;
 
@@ -192,7 +191,6 @@ function activate(context) {
 		else if (numberSet && !messageSent && moment(difference, "HH:mm:ss").isAfter(moment(messageTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
 			TF.sendMessage("DO YOUR WORK! - Tacky");
-
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'],  Responses['motivation']);
 			messageSent = true;
 
@@ -272,15 +270,11 @@ function activate(context) {
 	// OnEvent -- Get current time each time user changes focus
 	vscode.window.onDidChangeWindowState(async () => {
 		lastChange = moment().format('HH:mm:ss');
-		callSent = false;
-		messageSent = false;
 	})
 
 	// OnEvent -- Get current time when user changes text document
 	vscode.workspace.onDidChangeTextDocument(async () => {
 		lastChange = moment().format('HH:mm:ss');
-		callSent = false;
-		messageSent = false;
 	})
 
 	// OnEvent -- Change Tacky focus
