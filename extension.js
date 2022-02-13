@@ -5,7 +5,10 @@ const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Twilio-Functions.js');
 const { systemDefaultArchitecture } = require('@vscode/test-electron/out/util');
-const { toEditorSettings } = require('typescript');
+const { toEditorSettings, setTextRange } = require('typescript');
+const { text } = require('stream/consumers');
+const { start } = require('repl');
+const { format } = require('path/win32');
 
 //Global variables
 const  EmotionImages = {
@@ -96,14 +99,23 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			//vscode.DocumentHighlight.
+			const editor = vscode.window.activeTextEditor;
 			
+			var firstLine = editor.document.lineAt(0)
+			var lastLine = editor.document.lineAt(editor.document.lineCount - 1)
+			var textRange = new vscode.Range(firstLine.range.start, lastLine.range.end)
 			
+			let highlight = new vscode.DocumentHighlight(textRange)
 
+			console.log(textRange)
+			console.log(highlight);
 			
-
+			
+			
+			//vscode.workspace.applyEdit
 			//let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
 			//let highlight = editor.document.getText(wordRange);
-			//console.log(highlight);
+
 		  })
 	);
 	
