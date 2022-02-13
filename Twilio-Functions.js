@@ -1,4 +1,3 @@
-const twilioNumber = '+447700169666'
 let userNumber;
 
 const vscode = require('vscode');
@@ -22,7 +21,7 @@ module.exports = {
 	* @param {string} body
  	*/
     sendMessage: function(body) {
-		
+		const twilioNumber = vscode.workspace.getConfiguration('thumbtack').get('TwilioNumber').toString();
 		const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
 		const authToken =   vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
 		if(accountSid != 'NA' || authToken != 'NA'){
@@ -36,7 +35,7 @@ module.exports = {
     },
 	
 	makeCall: function() {
-		
+			const twilioNumber = vscode.workspace.getConfiguration('thumbtack').get('TwilioNumber').toString();
 			const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
 			const authToken =  vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
 			if(accountSid != 'NA' || authToken != 'NA'){
