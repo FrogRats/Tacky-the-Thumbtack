@@ -124,7 +124,7 @@ function activate(context) {
 		}
 
 		else {
-			if(Math.floor(Math.random() * 20)  == 1){
+			if(Math.floor(Math.random() * 15)  == 1){
 				setTheme();
 			}
 			else if ((Math.floor(Math.random() * 10)  >= 2) ){
