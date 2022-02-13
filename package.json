@@ -11,7 +11,7 @@
 	],
 	"activationEvents": [
 		"onCommand:tacky-the-thumbtack.awakenTacky",
-		"onCommand: tacky-the-thumbtack.changeTheme"
+		"onCommand:tacky-the-thumbtack.changeTheme"
 	],
 	"main": "./extension.js",
 	"contributes": {
