@@ -21,7 +21,9 @@ Tacky the Thumbtack is the world's worst VS Code Extension buddy to ever grace y
 > Motivation Tool: Tacky is designed to promote creation. (i.e. Files, code and retaining high productivity)  
 
 ## Requirements
-We recommend that you use `Add Number` when you install Tacky so he can provide you with the full experience. Additionally, you will need to poulate the config file with the necessary twilio data.
+We recommend that you use `Add Number` when you install Tacky so he can provide you with the full experience. Additionally, you will need to poulate the config file with the necessary twilio info: You will need a phone number with SMS and Voice in the form +447XXXXX... and your account SID and AuthToken.
+Run `Preferences: Open Settings (UI)` and Search 'Thumbtack'
+![settings UI](https://user-images.githubusercontent.com/2662858/153747256-e4d648cc-e7ae-448a-83c3-4134521f54e7.png)
 
 ## 1.0.0 - 13th February 2022
 
