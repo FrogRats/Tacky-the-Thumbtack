@@ -51,6 +51,10 @@
 			{
 				"command": "tacky-the-thumbtack.addnumber",
 				"title": "Add Number"
+			},
+			{
+				"command": "tacky-the-thumbtack.chaosMode",
+				"title": "Chaos Mode"
 			}
 		]
 	},
