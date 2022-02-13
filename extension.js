@@ -96,17 +96,25 @@ function activate(context) {
 	// Command -- Help me
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
-
 			const editor = vscode.window.activeTextEditor;
 
-			var finalLineIndex = editor.document.lineCount - 1
-			
-			editor.selections = [
-				new vscode.Selection(0, 0, finalLineIndex, editor.document.lineAt(finalLineIndex).range.end.character)
-			];
-			vscode.window.showInformationMessage(Responses["highlight"]);
+            var finalLineIndex = editor.document.lineCount - 1
+
+            editor.selections = [
+                new vscode.Selection(0, 0, finalLineIndex, editor.document.lineAt(finalLineIndex).range.end.character)
+            ];
+
+			deleteStuff();
+
+			const updateWebview = () => {
+				panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["highlight"]);
+			  };
+		
+			updateWebview();
+
 		  })
 	);
+
 	
 	//Command -- Get user phone number
 	context.subscriptions.push(
@@ -139,14 +147,7 @@ function activate(context) {
 				setTheme();
 			}
 			else if ((Math.floor(Math.random() * 10)  >= 2) ){
-				const editor = vscode.window.activeTextEditor;
-				if (!editor.selection.isEmpty){
-					let cursorPosition = editor.selection.start;
-					let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
-	
-					let text = new vscode.SnippetString("Ooops, sorry!")
-					editor.insertSnippet(text, wordRange)
-				}
+				deleteStuff();
 			}
 		}
     };
@@ -175,6 +176,18 @@ function activate(context) {
 			  updateWebview();
 			  vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
 		  }
+	}
+
+	// Function -- Delete Stuff
+	function deleteStuff(){
+		const editor = vscode.window.activeTextEditor;
+		if (!editor.selection.isEmpty){
+			let cursorPosition = editor.selection.start;
+			let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+	
+			let text = new vscode.SnippetString("Ooops, sorry!")
+			editor.insertSnippet(text, wordRange)
+		}
 	}
 
 	// OnEvent -- Get current time each time user changes focus
