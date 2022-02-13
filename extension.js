@@ -62,7 +62,7 @@ function activate(context) {
 		// The code you place here will be executed every time your command is executed
 		const updateWebview = () => {
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["greeting"]);
-		  };
+		};
 	
 		 // Set initial content
 		updateWebview();
@@ -86,7 +86,7 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.changeTheme", async () => {
 			setTheme();
-		  })
+		})
 	);
 
 	// Command -- Unhelpful Debugging
@@ -94,7 +94,7 @@ function activate(context) {
 		vscode.debug.onDidStartDebugSession(async () => {
 			vscode.window.showInformationMessage('Debugging are you? Let me help!');
 			vscode.debug.removeBreakpoints(vscode.debug.breakpoints)
-			})
+		})
 	);
 
 	// Command -- Help me
@@ -110,7 +110,7 @@ function activate(context) {
 
 			const updateWebview = () => {
 				panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["highlight"]);
-			  };
+			};
 		
 			updateWebview();
 
@@ -118,12 +118,12 @@ function activate(context) {
 				deleteStuff();
 				const updateWebview = () => {
 					panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["highlightFail"]);
-				  };
+				};
 			
 				updateWebview();
 			},3000);
 			
-		  })
+		})
 	);
 
 	// Command -- Chaos Mode
@@ -167,9 +167,7 @@ function activate(context) {
 			else {
 				panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["numberFailure"]);
 				setTimeout(resetMood, 3000);
-			}
-
-			
+			}			
 		})
 	);
 
@@ -199,7 +197,6 @@ function activate(context) {
 
 			setTimeout(resetMood, 3000);
 		}
-
 		else {
 			if(Math.floor(Math.random() * themeVal)  == 1){
 				setTheme();
@@ -238,25 +235,26 @@ function activate(context) {
 			"Would you like some help?",
 			"Yes",
 			"No"
-		  );
+		);
 	
-		  if (answer == "No") {
-			  const updateWebview = () => {
-				  panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
-				  setTimeout(resetMood, 3000);
-			  };
+		if (answer == "No") {
+			const updateWebview = () => {
+				panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
+				setTimeout(resetMood, 3000);
+			};
 			  
-			  updateWebview();
-			  vscode.workspace.getConfiguration().update("workbench.colorTheme", "Red");
+			updateWebview();
+			vscode.workspace.getConfiguration().update("workbench.colorTheme", "Red");
 			  
-		  } else {
-			  const updateWebview = () => {
-				  panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
-				  setTimeout(resetMood, 3000);
-			  };
+		  	} 
+			else {
+				const updateWebview = () => {
+				 	panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
+				  	setTimeout(resetMood, 3000);
+			  	};
 			  
-			  updateWebview();
-			  vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
+			updateWebview();
+			vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
 		}
 	}
 
