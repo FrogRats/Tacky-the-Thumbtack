@@ -24,32 +24,31 @@ module.exports = {
 		const twilioNumber = vscode.workspace.getConfiguration('thumbtack').get('TwilioNumber').toString();
 		const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
 		const authToken =   vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
+
 		if(accountSid != 'NA' || authToken != 'NA'){
-		const client = require('twilio')(accountSid, authToken);
-		client.messages.create({
-			body: body, // Message body,
-			to: userNumber, // Text this number
-			from: twilioNumber // From a valid Twilio number
-		});
-	}
+			const client = require('twilio')(accountSid, authToken);
+			client.messages.create({
+				body: body, // Message body,
+				to: userNumber, // Text this number
+				from: twilioNumber // From a valid Twilio number
+			});
+		}
     },
 	
 	makeCall: function() {
-			const twilioNumber = vscode.workspace.getConfiguration('thumbtack').get('TwilioNumber').toString();
-			const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
-			const authToken =  vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
-			if(accountSid != 'NA' || authToken != 'NA'){
-		const client = require('twilio')(accountSid, authToken);
-		client.calls.create({
-			
-			url: 'https://frogratsfunction.azurewebsites.net/api/MakeVoiceCall?',
-			to: userNumber,
-			from: twilioNumber
-		});
+		const twilioNumber = vscode.workspace.getConfiguration('thumbtack').get('TwilioNumber').toString();
+		const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
+		const authToken =  vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
+		
+		if(accountSid != 'NA' || authToken != 'NA'){
+			const client = require('twilio')(accountSid, authToken);
+			client.calls.create({
+				url: 'https://frogratsfunction.azurewebsites.net/api/MakeVoiceCall?',
+				to: userNumber,
+				from: twilioNumber
+			});
+		}
 	}
-	
-	}
-
 }
 
 /**
