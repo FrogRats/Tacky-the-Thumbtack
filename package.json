@@ -3,6 +3,8 @@
 	"displayName": "Tacky The Thumbtack",
 	"description": "Tacky the Thumbtack is the world's worst VS Code Extension buddy to ever grace your IDE. It's here to cause problems and challenge you to be a 'better' programmer.",
 	"version": "1.0.0",
+	"publisher": "FrogRats-Ntu",
+	"repository": "https://github.com/FrogRats/Tacky-the-Thumbtack",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
