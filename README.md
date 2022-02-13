@@ -38,7 +38,7 @@ Users appreciate release notes as you update your extension.
 ### 1.0.0 - 13th February 2022
 
 Initial release of Tacky!
-
+"
                   _______________________________________________
                   /                                               \
                  /.................................................\
@@ -90,5 +90,5 @@ Initial release of Tacky!
                                         \  /
                                         |  | 
                                          \/
-                                  
+                                  "
 
