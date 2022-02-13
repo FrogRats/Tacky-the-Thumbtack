@@ -133,18 +133,28 @@ function activate(context) {
 	// Command -- Chaos Mode
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.chaosMode", async () => {
-			if(Math.floor(Math.random() * 3)  == 1){
-				themeVal++;
-				deleteVal++;
-				enterVal++;
+
+			const factor = Math.floor(Math.random() * 4);
+			const choice = Math.floor(Math.random() * 3);
+
+			if (choice == 1) {
+				themeVal += factor;
+				deleteVal += factor;
+				enterVal += factor;
+
 				vscode.window.showInformationMessage('This action has pleased Tacky');
-			} else {
-				if (themeVal > 2 && deleteVal > 2 && enterVal > 2){
-					themeVal--;
-					deleteVal--;
-					enterVal--;
+			} 
+			else {
+				if ((themeVal - factor) > 2 && (deleteVal - factor) > 2 && (enterVal - factor) > 2) {
+					themeVal -= factor;
+					deleteVal -= factor;
+					enterVal -= factor;
+
 					vscode.window.showInformationMessage('This action will have consequences...');
-				} else {vscode.window.showInformationMessage("My opinion of you couldn't get any lower!");}
+				} 
+				else {
+					vscode.window.showInformationMessage("My opinion of you couldn't get any lower!");
+				}
 			}
 		  })
 	);
