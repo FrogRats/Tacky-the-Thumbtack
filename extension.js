@@ -21,8 +21,7 @@ const Responses = {
 	"changeThemeYes": "Whoops",
 	"fileCreation": "Adding to your project? dont forget to update your Readme <3",
 	"fileDeletion": "Where did the files go?",
-	"motivation": "Do your work!",
-	"highlight": "I have selected where I've identified the problem!"
+	"motivation": "Do your work!"
 };
 
 let lastChange;
@@ -97,6 +96,15 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			const editor = vscode.window.activeTextEditor;
+			
+			var firstLine = editor.document.lineAt(0)
+			var lastLine = editor.document.lineAt(editor.document.lineCount - 1)
+			var textRange = new vscode.Range(firstLine.range.start, lastLine.range.end)
+			
+			let highlight = new vscode.DocumentHighlight(textRange)
+			const editorWindow = new vscode.WorkspaceEdit
+			
+			vscode.workspace.applyEdit;
 
             var finalLineIndex = editor.document.lineCount - 1
 
@@ -201,7 +209,8 @@ function activate(context) {
 	})
 
 	// OnEvent -- Change Tacky focus
-	panel.onDidChangeViewState(async (e) => {
+
+	 panel.onDidChangeViewState(async (e) => {
 		if(e.webviewPanel.visible == false){
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 		}
