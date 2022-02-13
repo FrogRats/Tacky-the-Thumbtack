@@ -26,7 +26,7 @@ const Responses = {
 	"highlightFail": "Oh no!",
 	"numberMessage": "Please type in your phone number (+44) for helpful, motivational messages!",
 	"numberSuccess": "Thanks for the number!",
-	"leftTacky": "Where did you go, I bet you with that dam clippy again :(",
+	"leftTacky": "Where did you go, I bet you with that damn clippy again :(",
 	"numberFailure": "Aww that didn't work! Check your number and try again!"
 };
 
@@ -241,7 +241,6 @@ function activate(context) {
 		if (answer == "No") {
 			const updateWebview = () => {
 				panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
-				setTimeout(resetMood, 3000);
 			};
 			  
 			updateWebview();
@@ -251,7 +250,6 @@ function activate(context) {
 			else {
 				const updateWebview = () => {
 				 	panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
-				  	setTimeout(resetMood, 3000);
 			  	};
 			  
 			updateWebview();
