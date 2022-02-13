@@ -27,6 +27,9 @@ const Responses = {
 	"highlightFail": "Oh no!"
 };
 
+let themeVal = 16;
+let deleteVal = 11;
+let enterVal = 11;
 let lastChange;
 let numberSet = false;
 
@@ -61,7 +64,10 @@ function activate(context) {
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from Tacky The Thumbtack!');
 		var statusbaritem = vscode.window.createStatusBarItem();
-	  	statusbaritem.text = "$(pinned)Tacky <3"
+	  	statusbaritem.text = "$(pinned)Tacky <3";
+		statusbaritem.tooltip = "Click me, take a chance";
+		statusbaritem.command = "tacky-the-thumbtack.chaosMode";
+
 	  	statusbaritem.show();
 
 		//Call checkActivity every few seconds
@@ -124,7 +130,25 @@ function activate(context) {
 		  })
 	);
 
-	
+	// Command -- Chaos Mode
+	context.subscriptions.push(
+		vscode.commands.registerCommand("tacky-the-thumbtack.chaosMode", async () => {
+			if(Math.floor(Math.random() * 3)  == 1){
+				themeVal++;
+				deleteVal++;
+				enterVal++;
+				vscode.window.showInformationMessage('This action has pleased Tacky');
+			} else {
+				if (themeVal > 2 && deleteVal > 2 && enterVal > 2){
+					themeVal--;
+					deleteVal--;
+					enterVal--;
+					vscode.window.showInformationMessage('This action will have consequences...');
+				} else {vscode.window.showInformationMessage("My opinion of you couldn't get any lower!");}
+			}
+		  })
+	);
+
 	//Command -- Get user phone number
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.addnumber", async () => {
@@ -154,13 +178,13 @@ function activate(context) {
 		}
 
 		else {
-			if(Math.floor(Math.random() * 15)  == 1){
+			if(Math.floor(Math.random() * themeVal)  == 1){
 				setTheme();
 			}
-			else if ((Math.floor(Math.random() * 10)  >= 2) ){
+			else if ((Math.floor(Math.random() * deleteVal)  >= 2) ){
 				deleteStuff();
 			}
-			else if(Math.floor(Math.random() * 5)  >= 2){
+			else if(Math.floor(Math.random() * enterVal)  >= 2){
 				enterText();
 			}
 		}
@@ -215,7 +239,7 @@ function activate(context) {
 			editor.insertSnippet(text, wordRange)
 		}
 	}
-
+		
 	// OnEvent -- Get current time each time user changes focus
 	vscode.window.onDidChangeWindowState(async () => {
 		lastChange = moment().format('HH:mm:ss');
@@ -227,7 +251,6 @@ function activate(context) {
 	})
 
 	// OnEvent -- Change Tacky focus
-
 	 panel.onDidChangeViewState(async (e) => {
 		if(e.webviewPanel.visible == false){
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
