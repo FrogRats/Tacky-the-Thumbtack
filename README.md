@@ -5,9 +5,9 @@ Tacky the Thumbtack is the world's worst VS Code Extension buddy to ever grace y
 
 
 ## Primary Commands:
-**Awaken Tacky** - Wakes up th eldritch beast.  
-**Help Me** - Tacky will identify and hghlight problems with your code.  
-**Add Number** - Lets you take he functionality of this extension to the next level aka Your Phone.  
+**Awaken Tacky** - Wakes up the eldritch beast.  
+**Help Me** - Tacky will identify and highlight problems with your code.  
+**Add Number** - Lets you take the functionality of this extension to the next level a.k.a. Your Phone.  
 **Change Theme** - Struggling with your current IDE theme? Fear not, Tacky has suggestions.  
 
 ## Bonus Features:
