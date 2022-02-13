@@ -4,8 +4,6 @@ const vscode = require('vscode');
 const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Twilio-Functions.js');
-const { systemDefaultArchitecture } = require('@vscode/test-electron/out/util');
-const { SilentReporter } = require('@vscode/test-electron');
 
 
 //Global variables
