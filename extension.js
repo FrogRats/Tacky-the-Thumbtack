@@ -21,7 +21,8 @@ const Responses = {
 	"changeThemeYes": "Whoops",
 	"fileCreation": "Adding to your project? dont forget to update your Readme <3",
 	"fileDeletion": "Where did the files go?",
-	"motivation": "Do your work!"
+	"motivation": "Do your work!",
+	"highlight": "I have selected where I've identified the problem!"
 };
 
 let lastChange;
