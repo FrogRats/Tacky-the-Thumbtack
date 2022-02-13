@@ -23,19 +23,21 @@ module.exports = {
 		
 		const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
 		const authToken =   vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
+		if(accountSid != 'NA' || authToken != 'NA'){
 		const client = require('twilio')(accountSid, authToken);
 		client.messages.create({
 			body: body, // Message body,
 			to: userNumber, // Text this number
 			from: twilioNumber // From a valid Twilio number
 		});
-	
+	}
     },
 	
 	makeCall: function() {
 		
 			const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
 			const authToken =  vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
+			if(accountSid != 'NA' || authToken != 'NA'){
 		const client = require('twilio')(accountSid, authToken);
 		client.calls.create({
 			
@@ -43,6 +45,7 @@ module.exports = {
 			to: userNumber,
 			from: twilioNumber
 		});
+	}
 	
 	}
 
