@@ -16,6 +16,7 @@ const  EmotionImages = {
 	"rage": "https://frograts.github.io//HackNotts2021/tackyRage.gif"
 };
 const Responses = {
+	"eldritch": "ả̷̠͎̹͚̠̟̇͂̋͗̐̑̑̚͠ä̴̡̛͙̲̙̖́̍̒̀͛͛̅̑̑́̈́͊̌̕̕͝͝ạ̶̪̜̝̱̯̟̻̳̮̠̦̼̦̹̭́̈̄̊̀́̉̇̋͊͗͗̊̆̉̂͘͜͝͠a̸͚̼̳̰͉̣̱͕̲̝͙̝͓̥̔͌̈́̈́͋͗̌͗̏̍̄̚̚ͅa̸͕̭͗́̐̒̑̈̒̾̑̾̔̎̓a̶̞̫̳͍͖̤̳̲̟̣͎̪͌̄",
 	"greeting": "Hi! I'm looking forward to helping you ;)",
     "changeTheme": "Hi there! Looks like you're having a tough time with your coding ... let me help!",
     "changeThemeNo": "Too bad ;)",
@@ -153,7 +154,7 @@ function activate(context) {
 					vscode.window.showInformationMessage("My opinion of you couldn't get any lower!");
 				}
 			}
-		  })
+		})
 	);
 
 	//Command -- Get user phone number
@@ -162,9 +163,12 @@ function activate(context) {
 			if (TF.setNumber(await vscode.window.showInputBox())) {
 				panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["numberSuccess"]);
 				numberSet = true;
+
+				setTimeout(resetMood, 3000);
 			}
 			else {
 				panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["numberFailure"]);
+				setTimeout(resetMood, 3000);
 			}
 
 			
@@ -185,6 +189,8 @@ function activate(context) {
 
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['motivation']);
 			callSent = true;
+
+			setTimeout(resetMood, 3000);
 		}
 		else if (numberSet && !messageSent && moment(difference, "HH:mm:ss").isAfter(moment(messageTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
@@ -192,11 +198,11 @@ function activate(context) {
 
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'],  Responses['motivation']);
 			messageSent = true;
+
+			setTimeout(resetMood, 3000);
 		}
 
 		else {
-			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['greeting']);
-
 			if(Math.floor(Math.random() * themeVal)  == 1){
 				setTheme();
 			}
@@ -209,6 +215,11 @@ function activate(context) {
 		}
     };
 
+	//Function -- Reset Mood
+	function resetMood() {
+		panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["eldritch"]);
+	}
+
 	//Function -- Add text
 	function enterText() {
 		const editor = vscode.window.activeTextEditor;
@@ -216,7 +227,9 @@ function activate(context) {
 			editor.edit(editBuilder => {
 				const char = String.fromCharCode(97+Math.floor(Math.random() * 26))
 				editBuilder.insert(editor.selection.active, char);
-				vscode.window.showInformationMessage('Whoops, I slipped!');
+
+				panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
+				setTimeout(resetMood, 3000);
 			});
 		}
 	}
@@ -232,6 +245,7 @@ function activate(context) {
 		  if (answer == "No") {
 			  const updateWebview = () => {
 				  panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
+				  setTimeout(resetMood, 3000);
 			  };
 			  
 			  updateWebview();
@@ -240,11 +254,12 @@ function activate(context) {
 		  } else {
 			  const updateWebview = () => {
 				  panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['changeThemeYes']);
+				  setTimeout(resetMood, 3000);
 			  };
 			  
 			  updateWebview();
 			  vscode.workspace.getConfiguration().update("workbench.colorTheme", "Solarized Light");
-		  }
+		}
 	}
 
 	// Function -- Delete Stuff
@@ -284,7 +299,9 @@ function activate(context) {
 	vscode.workspace.onDidCreateFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Create event")
+
 		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["fileCreation"]);
+		setTimeout(resetMood, 3000);
 		}
 	})
 
@@ -292,7 +309,9 @@ function activate(context) {
 	vscode.workspace.onDidDeleteFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
 		console.log("Del event")
+
 		panel.webview.html = TUI.getWebviewContent(EmotionImages["mad"],Responses["fileDeletion"]);
+		setTimeout(resetMood, 3000);
 		}
 	})
 }
