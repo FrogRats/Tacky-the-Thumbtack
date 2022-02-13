@@ -173,19 +173,18 @@ function activate(context) {
 			lastChange = moment().format('HH:mm:ss');
 			//TF.makeCall();
 
-			vscode.window.showInformationMessage(Responses["motivation"]);
-			panel.webview.html = TUI.getWebviewContent(EmotionImages['rage']);
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['motivation']);
 		}
 		else if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(messageTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
 			//TF.sendMessage("DO YOUR WORK! - Tacky");
 
 			vscode.window.showInformationMessage(Responses["motivation"]);
-			panel.webview.html = TUI.getWebviewContent(EmotionImages['mad']);
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'],  Responses['motivation']);
 		}
 
 		else {
-			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy']);
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses['greeting']);
 
 			if(Math.floor(Math.random() * themeVal)  == 1){
 				setTheme();
