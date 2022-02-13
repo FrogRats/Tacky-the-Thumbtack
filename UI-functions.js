@@ -10,10 +10,35 @@ module.exports = {
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+        <style>
+        
+        
+        .bubble {
+          position: relative;
+          font-family: sans-serif;
+          font-size: 18px;
+          line-height: 24px;
+          width: 300px;
+          background: #fff;
+          border-radius: 40px;
+          padding: 24px;
+          text-align: center;
+          color: #000;
+        }
+        
+        .bubble-bottom-left:before {
+          content: "";
+          width: 0px;
+          height: 0px;
+          position: absolute;
+          border-left: 24px solid #fff;
+          border-right: 12px solid transparent;
+          border-top: 12px solid #fff;
+          border-bottom: 20px solid transparent;
+          left: 200px;
+          bottom: -24px;
+        </style>
+        
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet"> 
@@ -28,21 +53,13 @@ module.exports = {
         <div class = "container my-4">
           <div class = "row">
             <div class = "col-md-6 mx-auto">
+            <div class="bubble bubble-bottom-left" contenteditable>${tackyText}</div>
               <img src = "${tackyImage}" class = "img-fluid" alt = "Tacky Logo">
-            </div>
-            <div class = "col-md-6 m-auto">
-              <p>${tackyText}</p>
             </div>
           </div>
         </div>
 
-        <!-- DO NOT TOUCH -->
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-      </body>
+        </body>
 </html>`; 
   }
 }
