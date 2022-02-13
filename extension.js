@@ -26,6 +26,7 @@ const Responses = {
 	"highlightFail": "Oh no!",
 	"numberMessage": "Please type in your phone number (+44) for helpful, motivational messages!",
 	"numberSuccess": "Thanks for the number!",
+	"leftTacky": "Where did you go, I bet you with that dam clippy again :(",
 	"numberFailure": "Aww that didn't work! Check your number and try again!"
 };
 
@@ -287,27 +288,27 @@ function activate(context) {
 	// OnEvent -- Change Tacky focus
 	 panel.onDidChangeViewState(async (e) => {
 		if(e.webviewPanel.visible == false){
-		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
+			vscode.window.showInformationMessage('Tacky would like to know your location');
+			panel.webview.html = TUI.getWebviewContent(EmotionImages["sad"],Responses["leftTacky"]);
+			setTimeout(resetMood, 10000);
 		}
 	})
 
 	// OnEvent -- Add files
 	vscode.workspace.onDidCreateFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
-		console.log("Create event")
-
-		panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["fileCreation"]);
-		setTimeout(resetMood, 3000);
+			console.log("Create event")
+			panel.webview.html = TUI.getWebviewContent(EmotionImages["happy"],Responses["fileCreation"]);
+			setTimeout(resetMood, 3000);
 		}
 	})
 
 	// OnEvent -- Remove files
 	vscode.workspace.onDidDeleteFiles(async () => {
 		if(Math.floor(Math.random() * 11)  >= 7){
-		console.log("Del event")
-
-		panel.webview.html = TUI.getWebviewContent(EmotionImages["mad"],Responses["fileDeletion"]);
-		setTimeout(resetMood, 3000);
+			console.log("Del event")
+			panel.webview.html = TUI.getWebviewContent(EmotionImages["mad"],Responses["fileDeletion"]);
+			setTimeout(resetMood, 3000);
 		}
 	})
 }
