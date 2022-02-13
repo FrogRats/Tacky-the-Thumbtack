@@ -188,7 +188,8 @@ function activate(context) {
 	})
 
 	// OnEvent -- Change Tacky focus
-	panel.onDidChangeViewState(async (e) => {
+
+	 panel.onDidChangeViewState(async (e) => {
 		if(e.webviewPanel.visible == false){
 		vscode.window.showInformationMessage('Pay attention to Tacky ... :(');
 		}
