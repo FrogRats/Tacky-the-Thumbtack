@@ -1,8 +1,10 @@
 const twilioNumber = '+447700169666'
 let userNumber;
 
-const vscode = require('vscode');
+const accountSid = "ACad2d6631ebbb3405cd80e856341afdf4";
+const authToken = "29b4094c9384eed24a20e47afdeb596f"; 
 
+const client = require('twilio')(accountSid, authToken);
 
 
 
@@ -20,32 +22,20 @@ module.exports = {
 	* @param {string} body
  	*/
     sendMessage: function(body) {
-		
-		const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
-		const authToken =   vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
-		const client = require('twilio')(accountSid, authToken);
 		client.messages.create({
 			body: body, // Message body,
 			to: userNumber, // Text this number
 			from: twilioNumber // From a valid Twilio number
 		});
-	
     },
 	
 	makeCall: function() {
-		
-			const accountSid =  vscode.workspace.getConfiguration('thumbtack').get('TwilioSID').toString();
-			const authToken =  vscode.workspace.getConfiguration('thumbtack').get('TwilioAUTH').toString();
-		const client = require('twilio')(accountSid, authToken);
 		client.calls.create({
-			
 			url: 'https://frogratsfunction.azurewebsites.net/api/MakeVoiceCall?',
 			to: userNumber,
 			from: twilioNumber
 		});
-	
 	}
-
 }
 
 /**
