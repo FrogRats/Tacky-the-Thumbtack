@@ -97,15 +97,6 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			const editor = vscode.window.activeTextEditor;
-			
-			var firstLine = editor.document.lineAt(0)
-			var lastLine = editor.document.lineAt(editor.document.lineCount - 1)
-			var textRange = new vscode.Range(firstLine.range.start, lastLine.range.end)
-			
-			let highlight = new vscode.DocumentHighlight(textRange)
-			const editorWindow = new vscode.WorkspaceEdit
-			
-			vscode.workspace.applyEdit;
 
             var finalLineIndex = editor.document.lineCount - 1
 
