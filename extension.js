@@ -5,10 +5,7 @@ const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Twilio-Functions.js');
 const { systemDefaultArchitecture } = require('@vscode/test-electron/out/util');
-const { toEditorSettings, setTextRange } = require('typescript');
-const { text } = require('stream/consumers');
-const { start } = require('repl');
-const { format } = require('path/win32');
+
 
 //Global variables
 const  EmotionImages = {
@@ -106,6 +103,9 @@ function activate(context) {
 			var textRange = new vscode.Range(firstLine.range.start, lastLine.range.end)
 			
 			let highlight = new vscode.DocumentHighlight(textRange)
+			const editorWindow = new vscode.WorkspaceEdit
+			
+			vscode.workspace.applyEdit;
 
 			console.log(textRange)
 			console.log(highlight);
