@@ -15,6 +15,22 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "thumbtack",
+			"properties": {
+			  "thumbtack.TwilioSID": {
+				"type": "string",
+				"default": "NA",
+				"description": "SID for twilio"
+			  },
+			  "thumbtack.TwilioAUTH": {
+				"type": "string",
+				"default": "NA",
+				"description": "AUTH for twilio"
+			  }
+
+			}
+		  },
 		"commands": [
 			{
 				"command": "tacky-the-thumbtack.awakenTacky",
