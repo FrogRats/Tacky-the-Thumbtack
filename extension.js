@@ -30,7 +30,9 @@ const Responses = {
 let themeVal = 16;
 let deleteVal = 11;
 let enterVal = 11;
+
 let lastChange;
+
 let numberSet = false;
 
 /**
@@ -80,16 +82,6 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.changeTheme", async () => {
 			setTheme();
-		  })
-	);
-
-	// Command -- Send SMS to User
-	context.subscriptions.push(
-		vscode.commands.registerCommand("tacky-the-thumbtack.message", async () => {
-			if (numberSet) {
-				//TF.sendMessage("uwu");
-				TF.makeCall();
-			}
 		  })
 	);
 
@@ -172,22 +164,29 @@ function activate(context) {
 	// Function -- Check Timer
 	function checkInactivity() {
         const currentTime = moment().format("HH:mm:ss");
-		const timeThreshold = moment("00:00:30", "HH:mm:ss");
+		const messageTimer = moment("00:10:00", "HH:mm:ss");
+		const callTimer = moment("00:20:00", "HH:mm:ss");
 
 		const difference = moment.utc(moment(currentTime, "HH:mm:ss").diff(moment(lastChange, "HH:mm:ss"))).format("HH:mm:ss");
 
-		enterText();
-
-		if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
+		if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(callTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
-
 			//TF.makeCall();
+
+			vscode.window.showInformationMessage(Responses["motivation"]);
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['rage']);
+		}
+		else if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(messageTimer, "HH:mm:ss"))) {
+			lastChange = moment().format('HH:mm:ss');
 			//TF.sendMessage("DO YOUR WORK! - Tacky");
 
 			vscode.window.showInformationMessage(Responses["motivation"]);
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['mad']);
 		}
 
 		else {
+			panel.webview.html = TUI.getWebviewContent(EmotionImages['happy']);
+
 			if(Math.floor(Math.random() * themeVal)  == 1){
 				setTheme();
 			}
@@ -220,7 +219,7 @@ function activate(context) {
 			"No"
 		  );
 	
-		  if (answer === "No") {
+		  if (answer == "No") {
 			  const updateWebview = () => {
 				  panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['changeThemeNo']);
 			  };
