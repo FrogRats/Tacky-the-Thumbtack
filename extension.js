@@ -5,6 +5,7 @@ const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Twilio-Functions.js');
 const { systemDefaultArchitecture } = require('@vscode/test-electron/out/util');
+const { SilentReporter } = require('@vscode/test-electron');
 
 
 //Global variables
@@ -22,7 +23,8 @@ const Responses = {
 	"fileCreation": "Adding to your project? dont forget to update your Readme <3",
 	"fileDeletion": "Where did the files go?",
 	"motivation": "Do your work!",
-	"highlight": "I have selected where I've identified the problem!"
+	"highlight": "I have selected where I've identified the problem!",
+	"highlightFail": "Oh no!"
 };
 
 let lastChange;
@@ -104,14 +106,21 @@ function activate(context) {
                 new vscode.Selection(0, 0, finalLineIndex, editor.document.lineAt(finalLineIndex).range.end.character)
             ];
 
-			deleteStuff();
-
 			const updateWebview = () => {
-				panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["highlight"]);
+				panel.webview.html = TUI.getWebviewContent(EmotionImages['happy'], Responses["highlight"]);
 			  };
 		
 			updateWebview();
 
+			setTimeout(()=>{
+				deleteStuff();
+				const updateWebview = () => {
+					panel.webview.html = TUI.getWebviewContent(EmotionImages['sad'], Responses["highlightFail"]);
+				  };
+			
+				updateWebview();
+			},3000);
+			
 		  })
 	);
 
