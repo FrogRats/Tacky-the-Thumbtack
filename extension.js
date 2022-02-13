@@ -34,6 +34,8 @@ let enterVal = 11;
 let lastChange;
 
 let numberSet = false;
+let messageSent = false;
+let callSent = false;
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -73,7 +75,7 @@ function activate(context) {
 	  	statusbaritem.show();
 
 		//Call checkActivity every few seconds
-		setInterval(checkInactivity, 10000);
+		setInterval(checkInactivity, 5000);
 	});
 
 	context.subscriptions.push(disposable);
@@ -164,23 +166,24 @@ function activate(context) {
 	// Function -- Check Timer
 	function checkInactivity() {
         const currentTime = moment().format("HH:mm:ss");
-		const messageTimer = moment("00:10:00", "HH:mm:ss");
-		const callTimer = moment("00:20:00", "HH:mm:ss");
+		const messageTimer = moment("00:00:15", "HH:mm:ss");
+		const callTimer = moment("00:00:30", "HH:mm:ss");
 
 		const difference = moment.utc(moment(currentTime, "HH:mm:ss").diff(moment(lastChange, "HH:mm:ss"))).format("HH:mm:ss");
 
-		if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(callTimer, "HH:mm:ss"))) {
+		if (numberSet && !callSent && moment(difference, "HH:mm:ss").isAfter(moment(callTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
-			//TF.makeCall();
+			TF.makeCall();
 
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['rage'], Responses['motivation']);
+			callSent = true;
 		}
-		else if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(messageTimer, "HH:mm:ss"))) {
+		else if (numberSet && !messageSent && moment(difference, "HH:mm:ss").isAfter(moment(messageTimer, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
-			//TF.sendMessage("DO YOUR WORK! - Tacky");
+			TF.sendMessage("DO YOUR WORK! - Tacky");
 
-			vscode.window.showInformationMessage(Responses["motivation"]);
 			panel.webview.html = TUI.getWebviewContent(EmotionImages['mad'],  Responses['motivation']);
+			messageSent = true;
 		}
 
 		else {
@@ -251,11 +254,15 @@ function activate(context) {
 	// OnEvent -- Get current time each time user changes focus
 	vscode.window.onDidChangeWindowState(async () => {
 		lastChange = moment().format('HH:mm:ss');
+		callSent = false;
+		messageSent = false;
 	})
 
 	// OnEvent -- Get current time when user changes text document
 	vscode.workspace.onDidChangeTextDocument(async () => {
 		lastChange = moment().format('HH:mm:ss');
+		callSent = false;
+		messageSent = false;
 	})
 
 	// OnEvent -- Change Tacky focus
