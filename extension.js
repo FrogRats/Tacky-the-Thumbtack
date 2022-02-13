@@ -21,8 +21,7 @@ const Responses = {
 	"changeThemeYes": "Whoops",
 	"fileCreation": "Adding to your project? dont forget to update your Readme <3",
 	"fileDeletion": "Where did the files go?",
-	"motivation": "Do your work!",
-	"highlight": "I have selected where I've identified the problem!"
+	"motivation": "Do your work!"
 };
 
 let lastChange;
@@ -96,15 +95,27 @@ function activate(context) {
 	// Command -- Help me
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
-
+			//vscode.DocumentHighlight.
 			const editor = vscode.window.activeTextEditor;
-
-			var finalLineIndex = editor.document.lineCount - 1
 			
-			editor.selections = [
-				new vscode.Selection(0, 0, finalLineIndex, editor.document.lineAt(finalLineIndex).range.end.character)
-			];
-			vscode.window.showInformationMessage(Responses["highlight"]);
+			var firstLine = editor.document.lineAt(0)
+			var lastLine = editor.document.lineAt(editor.document.lineCount - 1)
+			var textRange = new vscode.Range(firstLine.range.start, lastLine.range.end)
+			
+			let highlight = new vscode.DocumentHighlight(textRange)
+			const editorWindow = new vscode.WorkspaceEdit
+			
+			vscode.workspace.applyEdit;
+
+			console.log(textRange)
+			console.log(highlight);
+			
+			
+			
+			//vscode.workspace.applyEdit
+			//let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+			//let highlight = editor.document.getText(wordRange);
+
 		  })
 	);
 	
