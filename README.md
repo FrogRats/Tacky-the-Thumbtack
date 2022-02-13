@@ -1,6 +1,8 @@
 # Tacky the Thumbtack
 
 Tacky the Thumbtack is the world's worst VS Code Extension buddy to ever grace your IDE. It's here to cause problems and challenge you to be a 'better' programmer.
+<p align = "center"><img src = "https://github.com/FrogRats/Tacky-the-Thumbtack/blob/main/Assets/tackyHappy.gif" width = "500" height = "500"></p>  
+
 
 ## Features
 
@@ -38,57 +40,3 @@ Users appreciate release notes as you update your extension.
 ### 1.0.0 - 13th February 2022
 
 Initial release of Tacky!
-"
-                  _______________________________________________
-                  /                                               \
-                 /.................................................\
-                 \                                                 /
-                  \                                               /   
-                   \............................................./
-                    |                                           |
-                    |                                           |
-                    |                                           |
-                    |                                           |
-                    |                                           |
-                    |    _-------                   -------_    |
-                    |      _____                     _____      |
-                    |     /     \                   /     \     |
-                    |    |   __  |                 |  __   |    |
-                    |    /__(  )_|                 |_(  )__\    |
-                    |                                           |
-                    |              _______________              |
-                    |             |  \__________/ |             |
-                    |              \             /              |
-                    |               \ __________/               |
-                    |                                           |
-                    |                                           |
-                    |                                           |
-              _____ |...........................................| _____
-           _/                                                           \_
-         _/                                                               \_
-       _/                                                                   \_
-     _/                                                                       \_
-   _/                                                                           \_
-  /                                                                               \
- /                                                                                 \
-|___________________________________________________________________________________|
-                                     |        |
-                                     |        |
-                                     |        |
-                                     |        |
-                                     |        |
-                                     |        |
-                                     |        |
-                                     |        |
-                                     |        |
-                                      \      /
-                                      |      |
-                                       \    /
-                                       |    |
-                                       \    /
-                                        |  |
-                                        \  /
-                                        |  | 
-                                         \/
-                                  "
-
