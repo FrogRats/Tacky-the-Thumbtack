@@ -5,6 +5,7 @@ const moment = require('moment');
 const TUI = require('./UI-functions.js');
 const TF = require('./Twilio-Functions.js');
 const { systemDefaultArchitecture } = require('@vscode/test-electron/out/util');
+const { toEditorSettings } = require('typescript');
 
 //Global variables
 const  EmotionImages = {
@@ -96,25 +97,7 @@ function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand("tacky-the-thumbtack.helpme", async () => {
 			//vscode.DocumentHighlight.
-			const editorEdit = new vscode.WorkspaceEdit;
-			const editor = vscode.window.activeTextEditor;
-			let cursorPosition = editor.selection.start;
-			let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
-			let highlight = editor.document.getText(wordRange);
-		
-			const codeText = editor.document.getText();
- 
-			editorEdit.replace(editor.document.uri,wordRange,"SHIET");
-			vscode.workspace.applyEdit;
-
-			if (codeText.includes('COMPILED')){
 			
-				vscode.DocumentHighlight.apply(editor.document);
-				vscode.DocumentHighlight.apply(highlight);
-				//vscode.DocumentHighlight()
-				//vscode.DocumentHighlight
-				console.log("It worked");
-			}
 			
 
 			
@@ -141,8 +124,18 @@ function activate(context) {
 		}
 
 		else {
-			if(Math.floor(Math.random() * 10)  == 1){
+			if(Math.floor(Math.random() * 20)  == 1){
 				setTheme();
+			}
+			else if ((Math.floor(Math.random() * 10)  >= 2) ){
+				const editor = vscode.window.activeTextEditor;
+				if (!editor.selection.isEmpty){
+					let cursorPosition = editor.selection.start;
+					let wordRange = editor.document.getWordRangeAtPosition(cursorPosition);
+	
+					let text = new vscode.SnippetString("Ooops, sorry!")
+					editor.insertSnippet(text, wordRange)
+				}
 			}
 		}
     };
