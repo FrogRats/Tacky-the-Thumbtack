@@ -142,6 +142,8 @@ function activate(context) {
 
 		const difference = moment.utc(moment(currentTime, "HH:mm:ss").diff(moment(lastChange, "HH:mm:ss"))).format("HH:mm:ss");
 
+		enterText();
+
 		if (numberSet && moment(difference, "HH:mm:ss").isAfter(moment(timeThreshold, "HH:mm:ss"))) {
 			lastChange = moment().format('HH:mm:ss');
 
@@ -158,8 +160,23 @@ function activate(context) {
 			else if ((Math.floor(Math.random() * 10)  >= 2) ){
 				deleteStuff();
 			}
+			else if(Math.floor(Math.random() * 5)  >= 2){
+				enterText();
+			}
 		}
     };
+
+	//Function -- Add text
+	function enterText() {
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			editor.edit(editBuilder => {
+				const char = String.fromCharCode(97+Math.floor(Math.random() * 26))
+				editBuilder.insert(editor.selection.active, char);
+				vscode.window.showInformationMessage('Whoops, I slipped!');
+			});
+		}
+	}
 
 	// Function -- Light Mode
 	async function setTheme(){
@@ -241,4 +258,3 @@ module.exports = {
 	activate,
 	deactivate
 }
-
