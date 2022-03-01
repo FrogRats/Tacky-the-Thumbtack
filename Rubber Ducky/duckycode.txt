@@ -1,0 +1,131 @@
+REM DuckyScript by Github User: hannah-ashna
+REM Summon Tacky the VS Code Demon
+
+DELAY 2000
+GUI r
+DELAY 800
+STRING code
+ENTER
+DELAY 1500
+CTRL-SHIFT x
+STRING Tacky
+ENTER
+DELAY 400
+TAB
+DOWN
+DOWN
+DELAY 400
+ENTER
+TAB
+ENTER
+
+REM Use 'run' to open up notepad to leave your message
+DELAY 1500
+GUI r
+DELAY 500
+STRING notepad.exe
+DELAY 500
+ENTER
+DELAY 500
+ENTER
+STRING                   _______________________________________________
+ENTER
+STRING                  /                                               \
+ENTER
+STRING                 /.................................................\
+ENTER
+STRING                 \                                                 /
+ENTER
+STRING                  \                                               /   
+ENTER
+STRING                   \............................................./
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |    _-------                   -------_    |
+ENTER
+STRING                    |      _____                     _____      |
+ENTER
+STRING                    |     /     \                   /     \     |
+ENTER
+STRING                    |    |   __  |                 |  __   |    |
+ENTER
+STRING                    |    /__(  )_|                 |_(  )__\    |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |              _______________              |
+ENTER
+STRING                    |             |  \__________/ |             |
+ENTER
+STRING                    |              \             /              |
+ENTER
+STRING                    |               \ __________/               |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING                    |                                           |
+ENTER
+STRING              _____ |...........................................| _____
+ENTER
+STRING           _/                                                           \_
+ENTER
+STRING         _/                                                               \_
+ENTER
+STRING       _/                                                                   \_
+ENTER
+STRING     _/                                                                       \_
+ENTER
+STRING   _/                                                                           \_
+ENTER
+STRING  /                                                                               \
+ENTER
+STRING /                                                                                 \
+ENTER
+STRING |___________________________________________________________________________________|
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                     |        |
+ENTER
+STRING                                      \      /
+ENTER
+STRING                                      |      |
+ENTER
+STRING                                       \    /
+ENTER
+STRING                                       |    |
+ENTER
+STRING                                       \    /
+ENTER
+STRING                                        |  |
+ENTER
+STRING                                        \  /
+ENTER
+STRING                                        |  | 
+ENTER
+STRING                                         \/
